@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}My Website{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<header>
+    <h1>{% block heading %}My Website{% endblock %}</h1>
+    <h2>
+        {% if user.is_authenticated %}
+            <p>Logged In as {{ user.name }}/{{ user.email }}!</p>
+        {% else %}
+            <p>Logged In as anonymous user!</p>
+        {% endif %}
+
+    </h2>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            {% if request.user.is_authenticated %}
+                <p>Logged in as @{{ user.email }}</p>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+                <li><a href="{% url 'upload' %}">Upload File</a></li>
+{#                <li><a href="{% url 'download' filename %}">download File</a></li>#}
+
+                {#                <li><a href="{% url 'download_file' %}">Upload File</a></li>#}
+            {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+            {% endif %}
+
+
+            <!-- Add more navigation links here -->
+        </ul>
+    </nav>
+</header>
+<main>
+    {% block content %}{% endblock %}
+</main>
+<footer>
+    <!-- Add footer content here -->
+</footer>
+</body>
+</html>

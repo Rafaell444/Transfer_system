@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1>Welcome to my site!</h1>
+    <p>This is the home page of my Django site.</p>
+    {% for file in files %}
+        {% if user.email == file.transfer_to.email %}
+            <h2>{{ file.host }} sent  <a href="{% url 'download_file' file.pk %}">{{ file.title }}</a></a> to You!</h2>
+
+
+        {% endif %}
+
+
+    {% endfor %}
+
+
+
+{% endblock %}

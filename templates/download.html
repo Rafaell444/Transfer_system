@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Download File</h2>
+  <p>Click the button below to download the file:</p>
+  <a href="{% url 'download' filename %}" class="btn btn-fill wow fadeInUp" data-wow-duration="0.8s" data-wow-delay="0.4s">Downlaod <i class="fa fa-download"></i></a>
+{% endblock %}
